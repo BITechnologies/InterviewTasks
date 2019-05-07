@@ -38,7 +38,7 @@ namespace Test
                     Name= "C", 
                     Addresses = new [] 
                     {
-                        new Address { Id = 4, City = "wrocław"},
+                        new Address { Id = 4, City = "Wrocław"},
                     }
                 }
             };

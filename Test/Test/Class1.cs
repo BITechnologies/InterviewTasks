@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Test
 {
@@ -21,13 +22,24 @@ namespace Test
         public void Reverse<T>(T[] arr)
         {
             //Należy zaimplementować w najbardziej optymalny sposób, bez użycia funkcji systemowych.
-            throw new NotImplementedException();
+            var leftIndex = 0;
+            var rightIndex = arr.Length - 1;
+            T tempValue;
+
+            while (leftIndex < rightIndex)
+            {
+                tempValue = arr[leftIndex];
+                arr[leftIndex] = arr[rightIndex];
+                arr[rightIndex] = tempValue;
+                leftIndex++;
+                rightIndex--;
+            }
         }
 
         public int GetCustomersCountIn(Customer[] customers, string city)
         {
             //Należy zaimplementować przy użyciu LINQ
-            throw new NotImplementedException();
+            return customers.Where(x => x.Addresses.Any(z => z.City == city)).Count();
         }
 
         /// <summary>
@@ -39,7 +51,32 @@ namespace Test
         public bool Contains(int[] array, int value)
         {
             //Należy zaimplementować przy użyciu algorytmu binary search
-            throw new NotImplementedException();
+
+            var result = false;
+            var leftIndex = 0;
+            var rightIndex = array.Length - 1;
+            var currentIndex = 0;
+
+            while (leftIndex <= rightIndex)
+            {
+                currentIndex = (int)Math.Floor((leftIndex + rightIndex) / 2.0);
+
+                if (array[currentIndex] < value)
+                {
+                    leftIndex = currentIndex + 1;
+                }
+                else if(array[currentIndex] > value)
+                {
+                    rightIndex = currentIndex - 1;
+                }
+                else
+                {
+                    leftIndex = rightIndex + 1 ;
+                    result = true;
+                }
+            }
+
+            return result;
         }
     }
 }
